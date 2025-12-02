@@ -5,6 +5,7 @@ const saveBtn = document.getElementById('save-about-btn');
 const textarea = document.getElementById('about-textarea');
 const aboutText = document.getElementById('about-text');
 const modalMessage = document.getElementById('modal-message');
+const aboutForm = document.getElementById('about-form');
 
 // Open modal and load current text
 updateBtn.addEventListener('click', () => {
@@ -16,17 +17,22 @@ updateBtn.addEventListener('click', () => {
 // Cancel button
 cancelBtn.addEventListener('click', () => {
     modal.classList.add('hidden');
+    modalMessage.classList.add('hidden');
 });
 
-saveBtn.addEventListener('click', () => {
+// Handle form submit instead of individual button click
+aboutForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // Prevent default form submission
+
     const content = textarea.value.trim();
-    if(content.length === 0){
+
+    if (content.length === 0) {
         modalMessage.textContent = "Content cannot be empty.";
         modalMessage.classList.remove('hidden');
         return;
     }
 
-    // Update page
+    // Update the page immediately
     aboutText.innerText = content;
 
     // Send content to PHP to save in about_me.txt
@@ -37,14 +43,20 @@ saveBtn.addEventListener('click', () => {
     })
     .then(response => response.text())
     .then(result => {
-        if(result.includes('success')){
+        if (result.includes('success')) {
             console.log('Saved successfully!');
         } else {
             console.error('Save failed:', result);
+            modalMessage.textContent = "Failed to save content.";
+            modalMessage.classList.remove('hidden');
         }
     })
-    .catch(err => console.error('Error:', err));
+    .catch(err => {
+        console.error('Error:', err);
+        modalMessage.textContent = "An error occurred.";
+        modalMessage.classList.remove('hidden');
+    });
 
-    // Close modal
+    // Close modal after saving
     modal.classList.add('hidden');
 });

@@ -11,7 +11,7 @@
     <!-- Header & Navigation -->
     <header class="header">
         <nav class="nav-container">
-            <div class="logo">&lt;KianDG /&gt;</div>
+            <div class="logo">KianDG</div>
             <div class="nav-links">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#about" class="nav-link">About Me</a>
@@ -24,15 +24,15 @@
     <!-- Home Section -->
     <section id="home" class="section home-section">
         <div class="home-container">
-            <img src="images/profile.jpg" class="profile-pic">
+            <img src="" class="profile-pic">
             <p class="intro-text">Hello, I'm</p>
-            <h1 class="name">Kian Carl De Guzman</h1>
+            <h1 class="name">KIAN DE GUZMAN</h1>
             <p class="subtitle">BSIT Student • UI/UX Learner • Developer in Progress</p>
             <a href="#projects" class="btn-primary">View My Projects</a>
         </div>
     </section>
 
-    <!-- About Me Section -->
+    <!-- About Me Section -->   
     <section id="about" class="section about-section">
         <div class="about-container">
             <h2 class="section-title">About Me</h2>
@@ -50,12 +50,15 @@
     <div id="about-modal" class="modal hidden">
         <div class="modal-content">
             <h3>Edit About Me</h3>
-            <textarea id="about-textarea" placeholder="Write your bio here..."></textarea>
-            <div class="modal-buttons">
-                <button id="cancel-about-btn" class="btn-secondary">Cancel</button>
-                <button id="save-about-btn" class="btn-primary">Save & Download</button>
-            </div>
-            <p id="modal-message" class="modal-message hidden"></p>
+            <!-- Form for About Me -->
+            <form id="about-form" method="POST" action="save_about.php">
+                <textarea name="aboutText" id="about-textarea" placeholder="Write your bio here..." required></textarea>
+                <div class="modal-buttons">
+                    <button type="button" id="cancel-about-btn" class="btn-secondary">Cancel</button>
+                    <button type="submit" id="save-about-btn" class="btn-primary">Save & Download</button>
+                </div>
+                <p id="modal-message" class="modal-message hidden"></p>
+            </form>
         </div>
     </div>
 
